@@ -1,10 +1,13 @@
 package com.example.socialmediaclone;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -13,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,24 +55,36 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
-                    String Name = dataSnapshot.child("fullname").getValue().toString();
-                    String Username = dataSnapshot.child("username").getValue().toString();
-                    String Gender = dataSnapshot.child("gender").getValue().toString();
-                    String Status = dataSnapshot.child("status").getValue().toString();
-                    String Image = dataSnapshot.child("profileimage").getValue().toString();
-                    String DOB = dataSnapshot.child("dob").getValue().toString();
-                    String Country = dataSnapshot.child("country").getValue().toString();
-                    String Relationship = dataSnapshot.child("relationshipstatus").getValue().toString();
+                    if(dataSnapshot.child("profileimage").exists())
+                    {
+                        String Name = dataSnapshot.child("fullname").getValue().toString();
+                        String Username = dataSnapshot.child("username").getValue().toString();
+                        String Gender = dataSnapshot.child("gender").getValue().toString();
+                        String Status = dataSnapshot.child("status").getValue().toString();
+                        String Image = dataSnapshot.child("profileimage").getValue().toString();
+                        String DOB = dataSnapshot.child("dob").getValue().toString();
+                        String Country = dataSnapshot.child("country").getValue().toString();
+                        String Relationship = dataSnapshot.child("relationshipstatus").getValue().toString();
 
-                    nama.setText(Name);
-                    username.setText(Username);
-                    country.setText(Country);
-                    dob.setText(DOB);
-                    relationship.setText(Relationship);
-                    gender.setText(Gender);
-                    status.setText(Status);
+                        nama.setText(Name);
+                        username.setText(Username);
+                        country.setText(Country);
+                        dob.setText(DOB);
+                        relationship.setText(Relationship);
+                        gender.setText(Gender);
+                        status.setText(Status);
 
-                    Picasso.with(ProfileActivity.this).load(Image).placeholder(R.drawable.profile).into(circleImageView);
+                        Picasso.with(ProfileActivity.this).load(Image).placeholder(R.drawable.profile).into(circleImageView);
+                    }
+                    else
+                    {
+                        Toast.makeText(ProfileActivity.this, "Masukin foto lu dulu coy", Toast.LENGTH_SHORT).show();
+                        Intent setupIntent = new Intent(ProfileActivity.this, SetupActivity.class);
+                        startActivity(setupIntent);
+                        finish();
+
+                    }
+
                 }
             }
 
