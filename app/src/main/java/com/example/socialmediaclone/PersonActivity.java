@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +26,9 @@ public class PersonActivity extends AppCompatActivity {
     CircleImageView userImage;
     private String PostKey;
     private FirebaseAuth mAuth;
-    private DatabaseReference PersonRef;
+    private DatabaseReference PersonRef,FriendRequestRefs;
+    private String senderID,receiverID,current_state;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class PersonActivity extends AppCompatActivity {
 
                     Picasso.with(PersonActivity.this).load(profileimage).into(userImage);
 
+                    aturButton();
                 }
             }
 
@@ -63,6 +68,85 @@ public class PersonActivity extends AppCompatActivity {
 
             }
         });
+
+        declineRequest.setVisibility(View.INVISIBLE);
+        declineRequest.setEnabled(false);
+
+        senderID = mAuth.getCurrentUser().getUid();
+        if(!senderID.equals(PostKey))
+        {
+            sendRequest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendRequest.setEnabled(false);
+                    if(current_state.equals("tidak_berteman"))
+                    {
+                        kirimPermintaanPertemanan();
+                    }
+                }
+            });
+        }
+        else
+        {
+            declineRequest.setVisibility(View.INVISIBLE);
+            sendRequest.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void aturButton() {
+        FriendRequestRefs.child(senderID)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(PostKey))
+                        {
+                            String request_type = dataSnapshot.child(PostKey).child("request_type").getValue().toString();
+                            if(request_type.equals("sent"))
+                            {
+                                current_state = "request_sent";
+                                sendRequest.setText("Cancel Friend request");
+
+                                declineRequest.setVisibility(View.INVISIBLE);
+                                declineRequest.setEnabled(false);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private void kirimPermintaanPertemanan() {
+        FriendRequestRefs.child(senderID).child(PostKey)
+                .child("request_type").setValue("sent")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            FriendRequestRefs.child(PostKey).child(senderID)
+                                    .child("request_type").setValue("received")
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                sendRequest.setEnabled(true);
+                                                current_state = "request_sent";
+                                                sendRequest.setText("Cancel Friend Request");
+
+                                                declineRequest.setVisibility(View.INVISIBLE);
+                                                declineRequest.setEnabled(false);
+
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
     }
 
     private void initialize() {
@@ -77,23 +161,11 @@ public class PersonActivity extends AppCompatActivity {
         sendRequest = (Button) findViewById(R.id.sendFriendRequest);
         declineRequest = (Button) findViewById(R.id.declineFriendRequest);
         PostKey =  getIntent().getExtras().get("Postkey").toString();
-
+        current_state = "tidak_berteman";
         mAuth = FirebaseAuth.getInstance();
         PersonRef = FirebaseDatabase.getInstance().getReference().child("Users").child(PostKey);
+        FriendRequestRefs = FirebaseDatabase.getInstance().getReference().child("FriendRequest");
 
-        sendRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        declineRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
     }
 }

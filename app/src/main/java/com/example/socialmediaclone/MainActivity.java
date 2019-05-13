@@ -157,9 +157,11 @@ public class MainActivity extends AppCompatActivity {
             checkExistanceUser();
         }
 
+        Query query = postRef.orderByChild("date");
+
         FirebaseRecyclerOptions<Posts> options=
                 new FirebaseRecyclerOptions.Builder<Posts>()
-                        .setQuery(postRef,Posts.class)
+                        .setQuery(query,Posts.class)
                         .setLifecycleOwner(this)
                         .build();
 
