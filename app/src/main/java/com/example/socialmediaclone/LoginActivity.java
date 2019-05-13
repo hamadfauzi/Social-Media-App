@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         register = (TextView) findViewById(R.id.textRegister);
         facebook = (ImageView) findViewById(R.id.loginWithFacebook);
         twitter = (ImageView) findViewById(R.id.loginWithTwitter);
+        login = (Button) findViewById(R.id.btnLogin);
         google = (ImageView) findViewById(R.id.loginWithGoogle);
         TextView forgot = (TextView) findViewById(R.id.textForgotPassword);
         progressDialog = new ProgressDialog(this);
