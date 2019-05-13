@@ -38,14 +38,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentActivity extends AppCompatActivity {
 
-    RecyclerView recyclerComment;
-    ImageButton post;
-    Toolbar toolbar;
-    EditText inputComment;
-    DatabaseReference postRefs;
-    DatabaseReference usersRefs;
-    FirebaseAuth mAuth;
-    String Post_Key,current_user_id;
+    RecyclerView recyclerComment;ImageButton post;Toolbar toolbar;EditText inputComment;
+    DatabaseReference postRefs;DatabaseReference usersRefs;
+    FirebaseAuth mAuth;String Post_Key,current_user_id;
     private FirebaseRecyclerAdapter<Comment, CommentsViewHolder> firebaseRecyclerAdapter;
 
     @Override
@@ -179,8 +174,6 @@ public class CommentActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
         FirebaseRecyclerOptions<Comment> options=
                 new FirebaseRecyclerOptions.Builder<Comment>()
                         .setQuery(postRefs,Comment.class)
@@ -189,8 +182,6 @@ public class CommentActivity extends AppCompatActivity {
 
         firebaseRecyclerAdapter =
                 new FirebaseRecyclerAdapter<Comment, CommentsViewHolder>(options) {
-
-
                     @Override
                     protected void onBindViewHolder(CommentsViewHolder holder, int position, @NonNull Comment model) {
 
@@ -198,10 +189,7 @@ public class CommentActivity extends AppCompatActivity {
                         holder.setTime(model.getTime());
                         holder.setComment(model.getComment());
                         holder.setDate(model.getDate());
-
-
                     }
-
                     @NonNull
                     @Override
                     public CommentsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
