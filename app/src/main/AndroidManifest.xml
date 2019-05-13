@@ -13,7 +13,10 @@
         android:roundIcon="@drawable/sublogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommentActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ResetPasswordActivity"></activity>
+        <activity
+            android:name=".CommentActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FindFriendActivity"
             android:parentActivityName=".MainActivity" />

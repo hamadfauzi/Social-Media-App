@@ -126,10 +126,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         facebook = (ImageView) findViewById(R.id.loginWithFacebook);
         twitter = (ImageView) findViewById(R.id.loginWithTwitter);
         google = (ImageView) findViewById(R.id.loginWithGoogle);
-        login = (Button) findViewById(R.id.btnLogin);
+        TextView forgot = (TextView) findViewById(R.id.textForgotPassword);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(this);
+        forgot.setOnClickListener(this);
         register.setOnClickListener(this);
         facebook.setOnClickListener(this);
         twitter.setOnClickListener(this);
@@ -155,6 +156,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.loginWithTwitter:
 
+                break;
+            case R.id.textForgotPassword:
+                Intent resetIntent = new Intent(LoginActivity.this,ResetPasswordActivity.class);
+                startActivity(resetIntent);
+                finish();
                 break;
         }
     }
