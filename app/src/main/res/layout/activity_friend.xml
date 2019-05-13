@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".FriendActivity">
+
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/friend_toolbar">
+
+    </include>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temanmu "
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/friend_toolbar"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:id="@+id/textGG"
+        android:textStyle="bold"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/textGG"
+        android:id="@+id/LL"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/textGG"
+            android:layout_alignParentStart="true"
+            android:id="@+id/recycleFriends"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
+</RelativeLayout>

@@ -17,6 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PersonActivity extends AppCompatActivity {
@@ -26,8 +29,8 @@ public class PersonActivity extends AppCompatActivity {
     CircleImageView userImage;
     private String PostKey;
     private FirebaseAuth mAuth;
-    private DatabaseReference PersonRef,FriendRequestRefs;
-    private String senderID,receiverID,current_state;
+    private DatabaseReference PersonRef,FriendRequestRefs,FriendRefs;
+    private String senderID,receiverID,current_state,saveCurrentDate;
 
 
     @Override
@@ -83,6 +86,19 @@ public class PersonActivity extends AppCompatActivity {
                     {
                         kirimPermintaanPertemanan();
                     }
+                    if(current_state.equals("request_sent"))
+                    {
+                        cancelPermintaanPertemanan();
+                    }
+                    if(current_state.equals("request_received"))
+                    {
+                        TerimaPermintaanPertemanan();
+
+                    }
+                    if(current_state.equals("berteman"))
+                    {
+                        HapusPertemanan();
+                    }
                 }
             });
         }
@@ -91,6 +107,150 @@ public class PersonActivity extends AppCompatActivity {
             declineRequest.setVisibility(View.INVISIBLE);
             sendRequest.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void TolakPermintaanPertemanan() {
+        FriendRequestRefs.child(senderID).child(PostKey)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            FriendRequestRefs.child(PostKey).child(senderID)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                sendRequest.setEnabled(true);
+                                                current_state = "tidak_berteman";
+                                                sendRequest.setText("Kirim Permintaan Pertemanan");
+
+                                                declineRequest.setVisibility(View.INVISIBLE);
+                                                declineRequest.setEnabled(false);
+
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+
+    private void HapusPertemanan() {
+        FriendRefs.child(senderID).child(PostKey)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            FriendRefs.child(PostKey).child(senderID)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                sendRequest.setEnabled(true);
+                                                current_state = "tidak_berteman";
+                                                sendRequest.setText("Kirim Permintaan Pertemanan");
+
+                                                declineRequest.setVisibility(View.INVISIBLE);
+                                                declineRequest.setEnabled(false);
+
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+
+    private void TerimaPermintaanPertemanan() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        FriendRefs.child(senderID).child(PostKey)
+                .child("date").setValue(saveCurrentDate)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            FriendRefs.child(PostKey).child(senderID)
+                                    .child("date").setValue(saveCurrentDate)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                FriendRequestRefs.child(senderID).child(PostKey)
+                                                        .removeValue()
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if(task.isSuccessful())
+                                                                {
+                                                                    FriendRequestRefs.child(PostKey).child(senderID)
+                                                                            .removeValue()
+                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    if(task.isSuccessful())
+                                                                                    {
+                                                                                        sendRequest.setEnabled(true);
+                                                                                        current_state = "berteman";
+                                                                                        sendRequest.setText("Hapus Pertemanan");
+
+                                                                                        declineRequest.setVisibility(View.INVISIBLE);
+                                                                                        declineRequest.setEnabled(false);
+
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+
+    private void cancelPermintaanPertemanan() {
+        FriendRequestRefs.child(senderID).child(PostKey)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            FriendRequestRefs.child(PostKey).child(senderID)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                sendRequest.setEnabled(true);
+                                                current_state = "tidak_berteman";
+                                                sendRequest.setText("Send Friend Request");
+
+                                                declineRequest.setVisibility(View.INVISIBLE);
+                                                declineRequest.setEnabled(false);
+
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
     }
 
     private void aturButton() {
@@ -104,10 +264,46 @@ public class PersonActivity extends AppCompatActivity {
                             if(request_type.equals("sent"))
                             {
                                 current_state = "request_sent";
-                                sendRequest.setText("Cancel Friend request");
+                                sendRequest.setText("Batalkan Permintaan Pertemanan");
 
                                 declineRequest.setVisibility(View.INVISIBLE);
                                 declineRequest.setEnabled(false);
+                            }
+                            else if(request_type.equals("received"))
+                            {
+                                current_state = "request_received";
+                                sendRequest.setText("Terima Permintaan Pertemanan");
+                                declineRequest.setVisibility(View.VISIBLE);
+                                declineRequest.setEnabled(true);
+
+                                declineRequest.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        TolakPermintaanPertemanan();
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                FriendRefs.child(senderID)
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if(dataSnapshot.hasChild(PostKey))
+                                                {
+                                                    current_state = "berteman";
+                                                    sendRequest.setText("Hapus Pertemanan");
+
+                                                    declineRequest.setVisibility(View.INVISIBLE);
+                                                    declineRequest.setEnabled(false);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                             }
                         }
                     }
@@ -136,7 +332,7 @@ public class PersonActivity extends AppCompatActivity {
                                             {
                                                 sendRequest.setEnabled(true);
                                                 current_state = "request_sent";
-                                                sendRequest.setText("Cancel Friend Request");
+                                                sendRequest.setText("Batalkan Permintaan Pertemanan");
 
                                                 declineRequest.setVisibility(View.INVISIBLE);
                                                 declineRequest.setEnabled(false);
@@ -165,7 +361,7 @@ public class PersonActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         PersonRef = FirebaseDatabase.getInstance().getReference().child("Users").child(PostKey);
         FriendRequestRefs = FirebaseDatabase.getInstance().getReference().child("FriendRequest");
-
+        FriendRefs = FirebaseDatabase.getInstance().getReference().child("Friends");
 
     }
 }
