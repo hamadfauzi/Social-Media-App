@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostActivity"
+    android:background="@drawable/backgr"
+    >
+
+    <include android:id="@+id/post_page_toolbar"
+        layout="@layout/app_bar_layout"></include>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/post_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/select_image"
+        android:layout_below="@+id/post_page_toolbar"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/post_image"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:id="@+id/post_status"
+        android:hint="Whats in your main?...."
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:background="@drawable/button"
+        android:layout_below="@id/post_status"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Update Post"
+        android:id="@+id/btnPost"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

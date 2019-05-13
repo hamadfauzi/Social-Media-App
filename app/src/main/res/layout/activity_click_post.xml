@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClickPostActivity"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:background="@drawable/login">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+        android:id="@+id/editPostImage"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputs"
+        android:layout_below="@+id/editPostImage"
+        android:text="Post description..."
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:id="@+id/editPostDescription"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/editPostDescription">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="EDIT POST"
+            android:textColor="@android:color/white"
+            android:id="@+id/btnEditPost"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="DELETE POST"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/btnDeletePost"
+            />
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

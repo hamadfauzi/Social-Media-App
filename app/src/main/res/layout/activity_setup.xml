@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetupActivity"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@drawable/backgr">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="220dp"
+        android:layout_marginTop="30dp"
+        android:layout_height="220dp"
+        android:src="@drawable/profile"
+        android:id="@+id/setup_profile_image"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/inputs"
+        android:layout_below="@+id/setup_profile_image"
+        android:id="@+id/setup_username"
+        android:drawableLeft="@drawable/username"
+        android:hint="  Username"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/inputs"
+        android:layout_below="@+id/setup_username"
+        android:id="@+id/setup_full_name"
+        android:drawableLeft="@drawable/name"
+        android:hint="  Full Name"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/inputs"
+        android:layout_below="@+id/setup_full_name"
+        android:id="@+id/setup_country"
+        android:drawableLeft="@drawable/country"
+        android:hint="  Country"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/setup_country"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="SAVE"
+            android:id="@+id/btnSave"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/setup_country"
+            android:layout_marginTop="40dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

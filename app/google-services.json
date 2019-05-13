@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "520537726102",
+    "firebase_url": "https://socialmediaclone-5ad6c.firebaseio.com",
+    "project_id": "socialmediaclone-5ad6c",
+    "storage_bucket": "socialmediaclone-5ad6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520537726102:android:60559c0c695c098a",
+        "android_client_info": {
+          "package_name": "com.example.socialmediaclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520537726102-7t2esqde1dcjugjs1hgrhsdail17c80u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.socialmediaclone",
+            "certificate_hash": "9768d1087339ce1a3ae0e5fa51db6f0f06509c5f"
+          }
+        },
+        {
+          "client_id": "520537726102-hm9862vueitue67n5u6dbsqaqb97sgn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA96ljvYBaU1xA5TlHjS-BIU_gIZ6ZS7mM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520537726102-hm9862vueitue67n5u6dbsqaqb97sgn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

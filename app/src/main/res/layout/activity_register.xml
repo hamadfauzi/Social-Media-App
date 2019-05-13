@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@drawable/backgr">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:id="@+id/logoRegister"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Email"
+        android:padding="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/email"
+        android:layout_below="@id/logoRegister"
+        android:id="@+id/registerEmail"
+        android:background="@drawable/inputs"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Password"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:padding="5dp"
+        android:drawableLeft="@drawable/password"
+        android:layout_below="@id/registerEmail"
+        android:id="@+id/registerPassword"
+        android:background="@drawable/inputs"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Confirm Password"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:inputType="textPassword"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/password"
+        android:layout_below="@id/registerPassword"
+        android:id="@+id/registerConfirmPassword"
+        android:background="@drawable/inputs"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="Create Account"
+        android:padding="10dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/registerConfirmPassword"
+        android:id="@+id/btnCreateAccount"/>
+</RelativeLayout>
