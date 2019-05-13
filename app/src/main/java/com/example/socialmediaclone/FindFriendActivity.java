@@ -1,6 +1,7 @@
 package com.example.socialmediaclone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -88,12 +89,21 @@ public class FindFriendActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull FindFriendViewHolder holder, int position, @NonNull FindFriend model) {
 
-                        //final String PostKey = getRef(position).getKey();
 
                         holder.setFullName(model.getFullname());
                         holder.setStatus(model.getStatus());
                         holder.setProfileImage(getApplicationContext(),model.getImage());
 
+                        final String PostKey = getRef(position).getKey();
+
+                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent personIntent = new Intent(FindFriendActivity.this,PersonActivity.class);
+                                personIntent.putExtra("Postkey",PostKey);
+                                startActivity(personIntent);
+                            }
+                        });
 
                     }
 
