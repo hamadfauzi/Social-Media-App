@@ -44,8 +44,33 @@ public class FriendActivity extends AppCompatActivity {
 
     }
 
-    private void displayAllUsers() {
 
+
+    public void initialize() {
+        setToolbar();
+        friendsList = (RecyclerView) findViewById(R.id.recycleFriends);
+        friendsList.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        friendsList.setLayoutManager(linearLayoutManager);
+        mAuth = FirebaseAuth.getInstance();
+        current_user_id = mAuth.getCurrentUser().getUid();
+        friendRefs = FirebaseDatabase.getInstance().getReference().child("Friend").child(current_user_id);
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
+    }
+
+    private void setToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.friend_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Friend");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
         FirebaseRecyclerOptions<Friend> options=
                 new FirebaseRecyclerOptions.Builder<Friend>()
                         .setQuery(friendRefs,Friend.class)
@@ -89,34 +114,6 @@ public class FriendActivity extends AppCompatActivity {
                     }
                 };
         friendsList.setAdapter(firebaseRecyclerAdapter);
-    }
-
-    public void initialize() {
-        setToolbar();
-        friendsList = (RecyclerView) findViewById(R.id.recycleFriends);
-        friendsList.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        friendsList.setLayoutManager(linearLayoutManager);
-        mAuth = FirebaseAuth.getInstance();
-        current_user_id = mAuth.getCurrentUser().getUid();
-        friendRefs = FirebaseDatabase.getInstance().getReference().child("Friends").child(current_user_id);
-        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
-    }
-
-    private void setToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.friend_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Friend");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        displayAllUsers();
 
     }
     public static class FriendViewHolder extends RecyclerView.ViewHolder
