@@ -374,7 +374,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.nav_friend:
-
+                Intent friendIntent = new Intent(MainActivity.this,FriendActivity.class);
+                friendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(friendIntent);
+                finish();
                 break;
             case R.id.nav_home:
                 sentToHomeActivity();

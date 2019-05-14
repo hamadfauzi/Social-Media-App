@@ -13,7 +13,10 @@
         android:roundIcon="@drawable/sublogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FriendActivity"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity
+            android:name=".FriendActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".PersonActivity" />
         <activity
             android:name=".ResetPasswordActivity"

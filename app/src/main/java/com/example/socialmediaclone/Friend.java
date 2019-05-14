@@ -1,5 +1,7 @@
 package com.example.socialmediaclone;
 
+import android.view.View;
+
 public class Friend {
 
     private String date,image,fullname;
@@ -14,6 +16,8 @@ public class Friend {
         this.fullname = fullname;
         this.image = image;
     }
+
+
 
     public String getDate() {
         return date;
