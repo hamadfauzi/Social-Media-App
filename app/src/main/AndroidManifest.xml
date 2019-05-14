@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo_aplikasi"
+        android:icon="@drawable/sublogo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_aplikasi"
+        android:roundIcon="@drawable/sublogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ChatActivity"></activity>
