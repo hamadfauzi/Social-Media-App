@@ -37,8 +37,7 @@ public class PostActivity extends AppCompatActivity {
     Toolbar mToolbar;
     ImageButton postImage;
     Button post;
-    private Uri imageUri;
-    EditText status;
+    private Uri imageUri;EditText status;
     String description;
     StorageReference ImagesRef;
     private final int GALLERY_PICK = 1;

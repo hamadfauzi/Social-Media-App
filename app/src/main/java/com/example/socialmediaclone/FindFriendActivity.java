@@ -34,10 +34,7 @@ public class FindFriendActivity extends AppCompatActivity {
     Toolbar toolbar;
     DatabaseReference findRef;
     FirebaseAuth mAuth;
-
     RecyclerView recyclerView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

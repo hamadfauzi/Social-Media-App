@@ -27,7 +27,6 @@ public class ClickPostActivity extends AppCompatActivity {
     ImageView editImage;
     TextView editTextView;
     Button editPost,deletePost;
-
     private String PostKey,currentID,userID,description,image;
     private FirebaseAuth mAuth;
     private DatabaseReference ClickPostRef;

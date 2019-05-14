@@ -6,6 +6,7 @@ public class Posts {
     public Posts(){
 
     }
+
     public Posts(String uid,String time,String date,String postimage,String description,String profileimage,String fullname)
     {
         this.date = date;

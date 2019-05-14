@@ -33,7 +33,6 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView chatRecycle;
     private String userNameReceiver, ReceiverUserID,senderUserId;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

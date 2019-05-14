@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         initialize();
     }
+
     private void initialize()
     {
         setToolbar();
@@ -95,6 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
     }
+
     private void setToolbar()
     {
         mToolbar = (Toolbar) findViewById(R.id.profile_toolbar);
@@ -103,4 +105,5 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
+
 }

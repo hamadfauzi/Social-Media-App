@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = (EditText) findViewById(R.id.registerConfirmPassword);
         register = (Button) findViewById(R.id.btnCreateAccount);
     }
+
     private void createAccountUser(){
         String e = email.getText().toString();
         String pass = password.getText().toString();
@@ -95,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
         }
     }
+
     private void sentToSetupActivity(){
         Intent intent = new Intent(RegisterActivity.this,SetupActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -10,14 +10,13 @@ public class Friend {
     {
 
     }
+
     public Friend(String date,String image,String fullname)
     {
         this.date = date;
         this.fullname = fullname;
         this.image = image;
     }
-
-
 
     public String getDate() {
         return date;

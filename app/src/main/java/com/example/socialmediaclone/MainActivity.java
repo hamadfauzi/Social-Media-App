@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private RecyclerView postList;
-    DatabaseReference UsersRef;
-    DatabaseReference postRef,likesRef;
+    private DatabaseReference UsersRef;
+    private DatabaseReference postRef,likesRef;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private Toolbar mToolbar;
     private FirebaseRecyclerAdapter<Posts,PostsViewHolder> firebaseRecyclerAdapter;
@@ -323,7 +323,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void checkExistanceUser() {
+    private void checkExistanceUser()
+    {
 
         final String current_user_id = mAuth.getCurrentUser().getUid();
 
@@ -342,29 +343,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void sendToSetupActivity(){
+    private void sendToSetupActivity()
+    {
         Intent setupIntent = new Intent(MainActivity.this, SetupActivity.class);
         setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(setupIntent);
         finish();
     }
 
-    private void sendToLoginActivity() {
+    private void sendToLoginActivity()
+    {
         Intent intent = new Intent(MainActivity.this,LoginActivity.class);
         startActivity(intent);
         finish();
     }
-
-    //untuk mengatur event ketika butonn 3 baris ditekan
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void userMenuSelector(MenuItem item){
+    private void userMenuSelector(MenuItem item)
+    {
         switch (item.getItemId()){
             case R.id.nav_add_post:
                 sentToPostActivity();
@@ -385,7 +388,8 @@ public class MainActivity extends AppCompatActivity {
                 sendToLoginActivity();
                 break;
             case R.id.nav_message:
-
+                Intent messageIntent = new Intent(MainActivity.this,FriendActivity.class);
+                startActivity(messageIntent);
                 break;
             case R.id.nav_profile:
                 sentToProfileActivity();
@@ -396,20 +400,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void sentToHomeActivity() {
+    private void sentToHomeActivity()
+    {
         Intent homeIntent = new Intent(MainActivity.this,MainActivity.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(homeIntent);
         finish();
     }
 
-    private void sentToProfileActivity() {
+    private void sentToProfileActivity()
+    {
         Intent settingIntent = new Intent(MainActivity.this, ProfileActivity.class);
         startActivity(settingIntent);
 
     }
 
-    private void sentToSettingActivity() {
+    private void sentToSettingActivity()
+    {
         Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
         startActivity(settingIntent);
     }

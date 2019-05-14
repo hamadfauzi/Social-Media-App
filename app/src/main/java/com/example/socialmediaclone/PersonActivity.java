@@ -32,7 +32,6 @@ public class PersonActivity extends AppCompatActivity {
     private DatabaseReference PersonRef,FriendRequestRefs,FriendRefs;
     private String senderID,current_state,saveCurrentDate;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -368,4 +367,5 @@ public class PersonActivity extends AppCompatActivity {
         FriendRefs = FirebaseDatabase.getInstance().getReference().child("Friend");
         senderID = mAuth.getCurrentUser().getUid();
     }
+
 }

@@ -45,6 +45,7 @@ public class SetupActivity extends AppCompatActivity {
     StorageReference mStorage;
     ProgressDialog progressDialog;
     final int galleryPick = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

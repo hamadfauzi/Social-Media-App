@@ -152,6 +152,7 @@ public class FriendActivity extends AppCompatActivity {
         friendsList.setAdapter(firebaseRecyclerAdapter);
 
     }
+
     public static class FriendViewHolder extends RecyclerView.ViewHolder
     {
 

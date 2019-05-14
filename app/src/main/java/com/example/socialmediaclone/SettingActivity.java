@@ -215,6 +215,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         }
     }
+
     private void initialize() {
         status = (EditText) findViewById(R.id.setting_profile_status);
         gender = (EditText) findViewById(R.id.setting_profile_Gender);
