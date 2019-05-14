@@ -1,7 +1,10 @@
 package com.example.socialmediaclone;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -94,6 +97,39 @@ public class FriendActivity extends AppCompatActivity {
 
                                     holder.setFullname(usernName);
                                     holder.setProfileImage(getApplicationContext(),profileImage);
+
+                                    holder.mView.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            CharSequence options[] = new CharSequence[]
+                                                    {
+                                                      usernName + " Profile",
+                                                      "Send Message"
+                                                    };
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(FriendActivity.this);
+                                            builder.setTitle("Select Options");
+                                            builder.setItems(options, new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    if(which == 0)
+                                                    {
+                                                        Intent profileIntent = new Intent(FriendActivity.this,PersonActivity.class);
+                                                        profileIntent.putExtra("Postkey",userID);
+                                                        startActivity(profileIntent);
+                                                    }
+                                                    if(which == 1)
+                                                    {
+                                                        Intent chatIntent = new Intent(FriendActivity.this,ChatActivity.class);
+                                                        chatIntent.putExtra("Postkey",userID);
+                                                        chatIntent.putExtra("username",usernName);
+                                                        startActivity(chatIntent);
+                                                    }
+                                                }
+                                            });
+                                            builder.show();
+                                        }
+                                    });
 
                                 }
                             }
