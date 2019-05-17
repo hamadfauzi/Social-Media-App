@@ -146,7 +146,6 @@ public class SettingActivity extends AppCompatActivity {
         Dialog dialog = builder.create();
         dialog.show();
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.holo_green_dark);
-
     }
 
 

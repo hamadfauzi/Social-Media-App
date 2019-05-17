@@ -37,7 +37,8 @@ public class PostActivity extends AppCompatActivity {
     Toolbar mToolbar;
     ImageButton postImage;
     Button post;
-    private Uri imageUri;EditText status;
+    private Uri imageUri;
+    EditText status;
     String description;
     StorageReference ImagesRef;
     private final int GALLERY_PICK = 1;
@@ -133,7 +134,7 @@ public class PostActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
         saveCurrentTime = currentTime.format(calendar1.getTime());
 
-         postRandomName = saveCurrentDate + saveCurrentTime;
+        postRandomName = saveCurrentDate + saveCurrentTime;
 
 
         final StorageReference filepath = ImagesRef.child("Post Images").child(imageUri.getLastPathSegment() + postRandomName + ".jpg");
