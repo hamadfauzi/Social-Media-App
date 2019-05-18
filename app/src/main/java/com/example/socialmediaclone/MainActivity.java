@@ -84,12 +84,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.navMenu);
         View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
-
         postList = (RecyclerView) findViewById(R.id.all_user_post_list);
         postList.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        /*linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);*/
         postList.setLayoutManager(linearLayoutManager);
 
 

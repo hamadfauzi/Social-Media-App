@@ -2,15 +2,15 @@ package com.example.socialmediaclone;
 
 public class FindFriend {
 
-    String image,fullname,status;
+    String profileimage,fullname,status;
 
     public FindFriend()
     {
 
     }
-    public FindFriend(String image,String fullname,String status)
+    public FindFriend(String profileimage,String fullname,String status)
     {
-        this.image = image;
+        this.profileimage = profileimage;
         this.fullname = fullname;
         this.status = status;
 
@@ -20,8 +20,8 @@ public class FindFriend {
         this.fullname = fullname;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String profileimage) {
+        this.profileimage = profileimage;
     }
 
     public void setStatus(String status) {
@@ -33,7 +33,7 @@ public class FindFriend {
     }
 
     public String getImage() {
-        return image;
+        return profileimage;
     }
 
     public String getStatus() {
